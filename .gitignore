@@ -1,0 +1,9 @@
+# 试验机（rig）：轨迹、生成物与密钥不进入仓库
+rig/traces/
+rig/experiments/generated/
+**/.env
+*.key
+
+# Python 字节码缓存
+__pycache__/
+*.py[cod]

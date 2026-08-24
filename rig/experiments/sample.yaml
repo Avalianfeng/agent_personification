@@ -1,0 +1,15 @@
+# 单流程样例：全显式 steps（persona + 假摘要注入 → 隐藏 CoT → 生成 → 加工）
+experiment: sample-demo
+provider: mock
+input:
+  text: 今天有点累，想找人聊聊。
+  context: 第三天对话，之前聊过工作压力
+steps:
+  - stage: inject
+    blocks:
+      - {type: persona, ref: presets/persona-lite.yaml}
+      - {type: summary, ref: experiments/fake-summaries/state-summary-1.md}
+      - {type: instruction, text: 用简体中文回答，语气温和，先共情再给建议}
+  - {stage: think, mode: cot, visible: false}
+  - {stage: generate, model: qwen2.5:7b, temperature: 0.7, max_tokens: 256}
+  - {stage: process, transforms: [trim, {name: clamp_length, max_chars: 200}, {name: filter, forbidden: [敏感词]}]}

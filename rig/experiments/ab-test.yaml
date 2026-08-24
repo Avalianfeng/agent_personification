@@ -1,0 +1,9 @@
+# 矩阵样例：preset × temperature × think 三轴笛卡尔积（2×2×2 = 8 组合）
+experiment: ab-test
+provider: mock
+input:
+  text: 今天有点累，想找人聊聊。
+axes:
+  preset: [reply-simple, style-formal]
+  temperature: [0.2, 0.8]
+  think: [none, {mode: multi, rounds: 2}]

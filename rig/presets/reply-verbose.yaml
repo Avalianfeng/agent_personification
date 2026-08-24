@@ -1,0 +1,7 @@
+name: reply-verbose
+type: steps
+description: 详细展开式回复（CoT 思考 + 高温 + 长输出）
+steps:
+  - {stage: think, mode: cot, visible: true}
+  - {stage: generate, model: qwen2.5:7b, temperature: 0.9, max_tokens: 512}
+  - {stage: process, transforms: [trim, {name: clamp_length, max_chars: 500}]}

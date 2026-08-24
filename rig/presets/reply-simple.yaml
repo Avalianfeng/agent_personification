@@ -1,0 +1,7 @@
+name: reply-simple
+type: steps
+description: 简洁直给回复（默认管线：无思考 + 温和温度）
+steps:
+  - {stage: think, mode: none}
+  - {stage: generate, model: qwen2.5:7b, temperature: 0.7, max_tokens: 256}
+  - {stage: process, transforms: [trim]}

@@ -1,0 +1,10 @@
+name: style-formal
+type: steps
+description: 正式书面风格（注入格式指令 + 低温采样）
+steps:
+  - stage: inject
+    blocks:
+      - {type: instruction, text: 用正式书面中文回复，措辞严谨、条理清晰，不使用口语和网络用语}
+  - {stage: think, mode: none}
+  - {stage: generate, model: qwen2.5:7b, temperature: 0.3, max_tokens: 256}
+  - {stage: process, transforms: [trim]}
